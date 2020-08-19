@@ -1,17 +1,14 @@
-from pathlib import Path
-
 from setuptools import find_packages, setup
 
 package_name = 'nodl_python'
 
 setup(
     name=package_name,
-    version='0.0.1',
+    version='0.3.0',
     packages=find_packages(exclude=['test']),
     data_files=[
         ('share/' + package_name, ['package.xml']),
-        ('share/ament_index/resource_index/packages',
-            ['resource/' + package_name]),
+        ('share/ament_index/resource_index/packages', ['resource/' + package_name]),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -29,7 +26,5 @@ setup(
     description='Implementation of the NoDL API in Python.',
     license='GNU Limited General Public License v3',
     tests_require=['pytest'],
-    package_data={
-        'nodl': [str(child) for child in Path('nodl/schemas').iterdir() if child.is_file()]
-    }
+    package_data={'nodl': ['_schemas/*.xsd']},
 )

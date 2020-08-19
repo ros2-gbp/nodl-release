@@ -15,9 +15,15 @@ from typing import List
 from lxml import etree
 from nodl import errors
 from nodl._parsing._schemas import v1_schema
-from nodl._parsing._v1._qos import _parse_qos
-from nodl._util import get_bool_attribute
-from nodl.types import Action, Node, Parameter, Service, Topic
+from nodl.types import (
+    Action,
+    Node,
+    Parameter,
+    PubSubRole,
+    ServerClientRole,
+    Service,
+    Topic,
+)
 
 
 def _parse_action(element: etree._Element) -> Action:
@@ -25,14 +31,9 @@ def _parse_action(element: etree._Element) -> Action:
     name = element.get('name')
     action_type = element.get('type')
 
-    server = get_bool_attribute(element, 'server')
-    client = get_bool_attribute(element, 'client')
-    if not (server or client):
-        raise errors.AmbiguousActionInterfaceError(element)
+    role = ServerClientRole(element.get('role'))
 
-    policy = _parse_qos(element.find('qos'))
-
-    return Action(name=name, action_type=action_type, server=server, client=client, qos=policy)
+    return Action(name=name, action_type=action_type, role=role)
 
 
 def _parse_parameter(element: etree._Element) -> Parameter:
@@ -45,14 +46,9 @@ def _parse_service(element: etree._Element) -> Service:
     name = element.get('name')
     service_type = element.get('type')
 
-    server = get_bool_attribute(element, 'server')
-    client = get_bool_attribute(element, 'client')
-    if not (server or client):
-        raise errors.AmbiguousServiceInterfaceError(element)
+    role = ServerClientRole(element.get('role'))
 
-    policy = _parse_qos(element.find('qos'))
-
-    return Service(name=name, service_type=service_type, server=server, client=client, qos=policy,)
+    return Service(name=name, service_type=service_type, role=role)
 
 
 def _parse_topic(element: etree._Element) -> Topic:
@@ -60,20 +56,9 @@ def _parse_topic(element: etree._Element) -> Topic:
     name = element.get('name')
     message_type = element.get('type')
 
-    publisher = get_bool_attribute(element, 'publisher')
-    subscription = get_bool_attribute(element, 'subscription')
-    if not (publisher or subscription):
-        raise errors.AmbiguousTopicInterfaceError(element)
+    role = PubSubRole(element.get('role'))
 
-    policy = _parse_qos(element.find('qos'))
-
-    return Topic(
-        name=name,
-        message_type=message_type,
-        publisher=publisher,
-        subscription=subscription,
-        qos=policy,
-    )
+    return Topic(name=name, message_type=message_type, role=role)
 
 
 def _parse_nodes(interface: etree._Element) -> List[Node]:
@@ -95,12 +80,14 @@ def _parse_node(node: etree._Element) -> Node:
     for child in node:
         if child.tag == 'action':
             actions.append(_parse_action(child))
-        if child.tag == 'parameter':
+        elif child.tag == 'parameter':
             parameters.append(_parse_parameter(child))
-        if child.tag == 'service':
+        elif child.tag == 'service':
             services.append(_parse_service(child))
-        if child.tag == 'topic':
+        elif child.tag == 'topic':
             topics.append(_parse_topic(child))
+        else:
+            raise errors.InvalidNodeChildError(child)
     return Node(
         name=name,
         executable=executable,
