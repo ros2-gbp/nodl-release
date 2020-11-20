@@ -4,7 +4,7 @@ package_name = 'ros2nodl'
 
 setup(
     name=package_name,
-    version='0.3.0',
+    version='0.3.1',
     packages=find_packages(exclude=['test']),
     data_files=[
         ('share/ament_index/resource_index/packages',
@@ -20,12 +20,12 @@ setup(
     keywords=['ROS'],
     classifiers=[
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: GNU General Public License v3',
+        'License :: OSI Approved :: Apache License 2.0',
         'Programming Language :: Python',
         'Topic :: Software Development',
     ],
     description='CLI tools for NoDL files.',
-    license='GNU General Public License v3',
+    license='Apache License 2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
