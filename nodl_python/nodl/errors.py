@@ -1,17 +1,18 @@
-# Copyright 2020 Canonical Ltd.
-#
-# This program is free software: you can redistribute it and/or modify it under the terms of the
-# GNU Limited General Public License version 3, as published by the Free Software Foundation.
-#
-# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-# without even the implied warranties of MERCHANTABILITY, SATISFACTORY QUALITY, or
-# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Limited General Public License for more details.
-#
-# You should have received a copy of the GNU Limited General Public License along with
-# this program. If not, see <http://www.gnu.org/licenses/>.
+# Copyright 2020 Canonical, Ltd.
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 from lxml import etree
-import rclpy.qos
 
 from .types import Node
 
@@ -51,9 +52,7 @@ class InvalidXMLError(InvalidNoDLError):
     """Error raised when unable to parse XML."""
 
     def __init__(self, err: etree.XMLSyntaxError):
-        super().__init__(
-            f'XML syntax error: {err.filename}: {err.msg}'
-        )
+        super().__init__(f'XML syntax error: {err.filename}: {err.msg}')
 
 
 class InvalidNoDLDocumentError(InvalidNoDLError):
@@ -78,40 +77,8 @@ class InvalidElementError(InvalidNoDLError):
         self.element = element
 
 
-class InvalidQoSError(InvalidElementError):
-    """Base class for all errors in parsing a QoS element."""
-
-
-class InvalidQosProfileError(InvalidQoSError):
-    """Error raised when rclpy does not accept QoSProfile constructor arguments."""
-
-    def __init__(
-        self, error: 'rclpy.qos.InvalidQoSProfileException', element: etree._Element
-    ) -> None:
-        super().__init__(str(error), element)
-
-
-class InvalidQOSAttributeValueError(InvalidQoSError):
-    """Error raised for values out of enum in QoS."""
-
-    def __init__(self, attribute: str, element: etree._Element) -> None:
-        super().__init__(
-            f'Value: {element.get(attribute)} is not valid for attribute {attribute}', element
-        )
-        self.attribute = attribute
-
-
 class InvalidActionError(InvalidElementError):
     """Base class for all errors in parsing an action."""
-
-
-class AmbiguousActionInterfaceError(InvalidActionError):
-    """Error raised when an action has no interface exposed."""
-
-    def __init__(self, element: etree._Element) -> None:
-        super().__init__(
-            f'Action <{element.get("name")}> is neither server nor client', element=element
-        )
 
 
 class InvalidParameterError(InvalidElementError):
@@ -122,25 +89,20 @@ class InvalidTopicError(InvalidElementError):
     """Base class for all errors in parsing a topic."""
 
 
-class AmbiguousTopicInterfaceError(InvalidTopicError):
-    """Error raised when a topic has no interface exposed."""
-
-    def __init__(self, element: etree._Element) -> None:
-        super().__init__(
-            f'Topic <{element.get("name")}> is neither publisher nor subscription', element=element
-        )
-
-
 class InvalidServiceError(InvalidElementError):
     """Base class for all errors in parsing a service."""
 
 
-class AmbiguousServiceInterfaceError(InvalidServiceError):
-    """Error raised when a topic has no interface exposed."""
+class InvalidNodeChildError(InvalidElementError):
+    """Error raised when a node has a child with an unsupported tag."""
 
     def __init__(self, element: etree._Element) -> None:
         super().__init__(
-            f'Service <{element.get("name")}> is neither server nor client', element=element
+            (
+                f'Nodes cannot contain {element.tag},'
+                'must be one of (Action, Parameter, Service, Topic)'
+            ),
+            element,
         )
 
 

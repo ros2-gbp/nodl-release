@@ -1,36 +1,43 @@
-# Copyright 2020 Canonical Ltd.
+# Copyright 2020 Canonical, Ltd.
 #
-# This program is free software: you can redistribute it and/or modify it under the terms of the
-# GNU Limited General Public License version 3, as published by the Free Software Foundation.
-#
-# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-# without even the implied warranties of MERCHANTABILITY, SATISFACTORY QUALITY, or
-# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Limited General Public License for more details.
-#
-# You should have received a copy of the GNU Limited General Public License along with
-# this program. If not, see <http://www.gnu.org/licenses/>.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 
-from typing import Any, Dict, List, Optional
+#     http://www.apache.org/licenses/LICENSE-2.0
 
-from nodl._util import qos_to_dict
-from rclpy.qos import QoSPresetProfiles, QoSProfile
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+from enum import Enum, unique
+from typing import Any, List, Optional, Union
+
+
+@unique
+class PubSubRole(Enum):
+    PUBLISHER = 'publisher'
+    SUBSCRIPTION = 'subscription'
+    BOTH = 'both'
+
+
+@unique
+class ServerClientRole(Enum):
+    SERVER = 'server'
+    CLIENT = 'client'
+    BOTH = 'both'
 
 
 class NoDLData:
     """Data structure base class for NoDL objects."""
 
     def __repr__(self) -> str:
-        return str(self._as_dict)
+        return str(self.__dict__)
 
     def __str__(self) -> str:
-        return str(self._as_dict)
-
-    @property
-    def _as_dict(self) -> Dict:
-        self_dict = self.__dict__.copy()
-        if 'qos' in self_dict:
-            self_dict['qos'] = qos_to_dict(self_dict['qos'])
-        return self_dict
+        return str(self.__dict__)
 
 
 class NoDLInterface(NoDLData):
@@ -42,72 +49,49 @@ class NoDLInterface(NoDLData):
 
     def __eq__(self, other: Any) -> bool:
         return (
-            isinstance(other, type(self)) or isinstance(self, type(other))
-        ) and self.__dict__ == other.__dict__
+            (isinstance(other, type(self)) and isinstance(self, type(other)))
+            and self.name == other.name
+            and self.type == other.type
+        )
 
 
-class Action(NoDLInterface):
+class _NoDLInterfaceWithRole(NoDLInterface):
+    """ABC providing role to interfaces."""
+
+    def __init__(self, *, name: str, value_type: str, role: Union[PubSubRole, ServerClientRole]):
+        super().__init__(name=name, value_type=value_type)
+        self.role = role
+
+    def __eq__(self, other: Any):
+        return super().__eq__(other) and self.role == other.role
+
+
+class Action(_NoDLInterfaceWithRole):
     """Data structure for action entries in NoDL."""
 
-    def __init__(
-        self,
-        *,
-        name: str,
-        action_type: str,
-        server: bool = False,
-        client: bool = False,
-        qos: QoSProfile = QoSPresetProfiles.ACTION_STATUS_DEFAULT.value
-    ) -> None:
-        super().__init__(name=name, value_type=action_type)
-        self.server = server
-        self.client = client
-
-        self.qos = qos
+    def __init__(self, *, name: str, action_type: str, role: ServerClientRole) -> None:
+        super().__init__(name=name, value_type=action_type, role=role)
 
 
 class Parameter(NoDLInterface):
     """Data structure for parameter entries in NoDL."""
 
-    def __init__(self, *, name: str, parameter_type: str) -> None:
+    def __init__(self, *, name: str, parameter_type: str):
         super().__init__(name=name, value_type=parameter_type)
 
 
-class Service(NoDLInterface):
+class Service(_NoDLInterfaceWithRole):
     """Data structure for service entries in NoDL."""
 
-    def __init__(
-        self,
-        *,
-        name: str,
-        service_type: str,
-        server: bool = False,
-        client: bool = False,
-        qos: QoSProfile = QoSPresetProfiles.SERVICES_DEFAULT.value
-    ) -> None:
-        super().__init__(name=name, value_type=service_type)
-        self.server = server
-        self.client = client
-
-        self.qos = qos
+    def __init__(self, *, name: str, service_type: str, role: ServerClientRole,) -> None:
+        super().__init__(name=name, value_type=service_type, role=role)
 
 
-class Topic(NoDLInterface):
+class Topic(_NoDLInterfaceWithRole):
     """Data structure for topic entries in NoDL."""
 
-    def __init__(
-        self,
-        *,
-        name: str,
-        message_type: str,
-        publisher: bool = False,
-        subscription: bool = False,
-        qos: QoSProfile = QoSPresetProfiles.SYSTEM_DEFAULT.value
-    ) -> None:
-        super().__init__(name=name, value_type=message_type)
-        self.publisher = publisher
-        self.subscription = subscription
-
-        self.qos = qos
+    def __init__(self, *, name: str, message_type: str, role: PubSubRole,) -> None:
+        super().__init__(name=name, value_type=message_type, role=role)
 
 
 class Node(NoDLData):
@@ -121,7 +105,7 @@ class Node(NoDLData):
         actions: Optional[List[Action]] = None,
         parameters: Optional[List[Parameter]] = None,
         services: Optional[List[Service]] = None,
-        topics: Optional[List[Topic]] = None
+        topics: Optional[List[Topic]] = None,
     ) -> None:
         self.name = name
         self.executable = executable
@@ -132,14 +116,3 @@ class Node(NoDLData):
         )
         self.services = {service.name: service for service in services} if services else {}
         self.topics = {topic.name: topic for topic in topics} if topics else {}
-
-    @property
-    def _as_dict(self):
-        return {
-            'name': self.name,
-            'executable': self.executable,
-            'actions': [action._as_dict for action in self.actions.values()],
-            'parameters': [parameter._as_dict for parameter in self.parameters.values()],
-            'services': [service._as_dict for service in self.services.values()],
-            'topics': [topic._as_dict for topic in self.topics.values()],
-        }
