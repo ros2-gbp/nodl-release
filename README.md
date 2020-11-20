@@ -1,3 +1,28 @@
+## nodl (foxy) - 0.3.1-1
+
+The packages in the `nodl` repository were released into the `foxy` distro by running `/usr/bin/bloom-release nodl --rosdistro foxy -e` on `Fri, 20 Nov 2020 21:05:57 -0000`
+
+These packages were released:
+- `nodl_python`
+- `ros2nodl`
+
+Version of package(s) in repository `nodl`:
+
+- upstream repository: https://github.com/ubuntu-robotics/nodl.git
+- release repository: https://github.com/ros2-gbp/nodl-release.git
+- rosdistro version: `0.3.0-1`
+- old version: `0.3.0-1`
+- new version: `0.3.1-1`
+
+Versions of tools used:
+
+- bloom version: `0.10.0`
+- catkin_pkg version: `0.4.22`
+- rosdep version: `0.19.0`
+- rosdistro version: `0.8.2`
+- vcstools version: `0.1.42`
+
+
 ## nodl (rolling) - 0.3.1-1
 
 The packages in the `nodl` repository were released into the `rolling` distro by running `/usr/bin/bloom-release nodl --rosdistro rolling -e` on `Fri, 20 Nov 2020 19:16:06 -0000`
