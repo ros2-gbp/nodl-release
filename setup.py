@@ -4,7 +4,7 @@ package_name = 'nodl_python'
 
 setup(
     name=package_name,
-    version='0.3.0',
+    version='0.3.1',
     packages=find_packages(exclude=['test']),
     data_files=[
         ('share/' + package_name, ['package.xml']),
@@ -19,12 +19,12 @@ setup(
     keywords=['ROS'],
     classifiers=[
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: GNU Limited General Public License v3',
+        'License :: OSI Approved :: Apache License 2.0',
         'Programming Language :: Python',
         'Topic :: Software Development',
     ],
     description='Implementation of the NoDL API in Python.',
-    license='GNU Limited General Public License v3',
+    license='Apache License 2.0',
     tests_require=['pytest'],
     package_data={'nodl': ['_schemas/*.xsd']},
 )
