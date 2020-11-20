@@ -1,19 +1,20 @@
-# Copyright 2020 Canonical Ltd.
+# Copyright 2020 Canonical, Ltd.
 #
-# This program is free software: you can redistribute it and/or modify it under the terms of the
-# GNU Limited General Public License version 3, as published by the Free Software Foundation.
-#
-# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-# without even the implied warranties of MERCHANTABILITY, SATISFACTORY QUALITY, or
-# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Limited General Public License for more details.
-#
-# You should have received a copy of the GNU Limited General Public License along with
-# this program. If not, see <http://www.gnu.org/licenses/>.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 
-from pathlib import Path
+#     http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import importlib.resources
 
 from lxml import etree
-import pkg_resources
 
 
 __interface_schema: etree.XMLSchema = None
@@ -35,7 +36,5 @@ def v1_schema() -> etree.XMLSchema:
 
 
 def _get_schema(name: str) -> etree.XMLSchema:
-    file_name = pkg_resources.resource_filename(
-        package_or_requirement='nodl', resource_name=str(Path(f'schemas/{name}'))
-    )
-    return etree.XMLSchema(file=file_name)
+    with importlib.resources.path('nodl._schemas', name) as path:
+        return etree.XMLSchema(file=str(path))
