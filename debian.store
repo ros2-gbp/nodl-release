@@ -1,1 +1,1 @@
-{"base": "6962afb", "parent": "debian/rolling/nodl_python", "previous": "d7cfb74", "trim": "", "trimbase": ""}
+{"base": "01b825f", "parent": "debian/galactic/nodl_python", "previous": "4bcf8f3", "trim": "", "trimbase": ""}
