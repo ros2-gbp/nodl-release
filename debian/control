@@ -1,0 +1,12 @@
+Source: ros-iron-nodl-python
+Section: misc
+Priority: optional
+Maintainer: Ubuntu Robotics <ubuntu-robotics@lists.launchpad.net>
+Build-Depends: debhelper (>= 9.0.0), python3-lxml, python3-pytest <!nocheck>, python3-pytest-mock <!nocheck>, ros-iron-ament-flake8 <!nocheck>, ros-iron-ament-index-python, ros-iron-ament-lint-auto <!nocheck>, ros-iron-ament-lint-common <!nocheck>, ros-iron-ament-mypy <!nocheck>, ros-iron-ros-workspace, python3-all, python3-setuptools, dh-python
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-iron-nodl-python
+Architecture: any
+Depends: ${python3:Depends}, ${misc:Depends}, python3-lxml, ros-iron-ament-index-python, ros-iron-ros-workspace
+Description: Implementation of the NoDL API in Python.
