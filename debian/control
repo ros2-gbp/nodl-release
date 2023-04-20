@@ -1,0 +1,12 @@
+Source: ros-iron-ros2nodl
+Section: misc
+Priority: optional
+Maintainer: Ubuntu Robotics <ubuntu-robotics@lists.launchpad.net>
+Build-Depends: debhelper (>= 9.0.0), python3-argcomplete, python3-pytest <!nocheck>, python3-pytest-mock <!nocheck>, ros-iron-ament-flake8 <!nocheck>, ros-iron-ament-index-python, ros-iron-ament-lint-auto <!nocheck>, ros-iron-ament-lint-common <!nocheck>, ros-iron-ament-mypy <!nocheck>, ros-iron-nodl-python, ros-iron-ros2cli, ros-iron-ros2pkg, ros-iron-ros2run, ros-iron-ros-workspace, python3-all, python3-setuptools, dh-python
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-iron-ros2nodl
+Architecture: any
+Depends: ${python3:Depends}, ${misc:Depends}, python3-argcomplete, ros-iron-ament-index-python, ros-iron-nodl-python, ros-iron-ros2cli, ros-iron-ros2pkg, ros-iron-ros2run, ros-iron-ros-workspace
+Description: CLI tools for NoDL files.

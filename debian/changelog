@@ -1,0 +1,32 @@
+ros-iron-ros2nodl (0.3.1-4bullseye) bullseye; urgency=high
+
+  * relicense project as Apache 2.0
+  * Contributors: Ted Kern
+
+ -- Ubuntu Robotics <ubuntu-robotics@lists.launchpad.net>  Wed, 18 Nov 2020 16:00:00 -0000
+
+ros-iron-ros2nodl (0.3.0-4bullseye) bullseye; urgency=high
+
+  * Add role field, replacing bool pairs
+  * Bump ros-tooling action versions
+  * Contributors: Ted Kern
+
+ -- Ubuntu Robotics <ubuntu-robotics@lists.launchpad.net>  Tue, 18 Aug 2020 16:00:00 -0000
+
+ros-iron-ros2nodl (0.2.0-4bullseye) bullseye; urgency=high
+
+  * strip qos from nodl_python (will re-add later)
+  * test all packages and use codecov
+  * Contributors: Kyle Fazzari, Ted Kern
+
+ -- Ubuntu Robotics <ubuntu-robotics@lists.launchpad.net>  Sun, 28 Jun 2020 16:00:00 -0000
+
+ros-iron-ros2nodl (0.1.0-4bullseye) bullseye; urgency=high
+
+  * Initial release
+  * Add show and validate verbs
+  * Contributors: Ted Kern
+
+ -- Ubuntu Robotics <ubuntu-robotics@lists.launchpad.net>  Wed, 27 May 2020 16:00:00 -0000
+
+
