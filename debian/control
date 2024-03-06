@@ -1,0 +1,12 @@
+Source: ros-rolling-nodl-python
+Section: misc
+Priority: optional
+Maintainer: Ubuntu Robotics <ubuntu-robotics@lists.launchpad.net>
+Build-Depends: debhelper (>= 9.0.0), ament-cmake-copyright <!nocheck>, ament-cmake-cppcheck <!nocheck>, ament-cmake-cpplint <!nocheck>, ament-cmake-flake8 <!nocheck>, ament-cmake-lint-cmake <!nocheck>, ament-cmake-pep257 <!nocheck>, ament-cmake-uncrustify <!nocheck>, ament-cmake-xmllint <!nocheck>, ament-lint <!nocheck>, python3-ament-flake8 <!nocheck>, python3-ament-index, python3-ament-mypy <!nocheck>, python3-lxml, python3-pytest <!nocheck>, python3-pytest-mock <!nocheck>, ros-rolling-ros-workspace, python3-all, python3-setuptools, dh-python
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-rolling-nodl-python
+Architecture: any
+Depends: ${python3:Depends}, ${misc:Depends}, python3-ament-index, python3-lxml, ros-rolling-ros-workspace
+Description: Implementation of the NoDL API in Python.
