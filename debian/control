@@ -1,0 +1,12 @@
+Source: ros-kilted-nodl-python
+Section: misc
+Priority: optional
+Maintainer: Ubuntu Robotics <ubuntu-robotics@lists.launchpad.net>
+Build-Depends: debhelper (>= 9.0.0), python3-lxml, python3-pytest <!nocheck>, python3-pytest-mock <!nocheck>, ros-kilted-ament-flake8 <!nocheck>, ros-kilted-ament-index-python, ros-kilted-ament-lint-auto <!nocheck>, ros-kilted-ament-lint-common <!nocheck>, ros-kilted-ament-mypy <!nocheck>, ros-kilted-ros-workspace, python3-all, python3-setuptools, dh-python
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-kilted-nodl-python
+Architecture: any
+Depends: ${python3:Depends}, ${misc:Depends}, python3-lxml, ros-kilted-ament-index-python, ros-kilted-ros-workspace
+Description: Implementation of the NoDL API in Python.
