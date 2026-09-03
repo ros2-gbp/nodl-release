@@ -1,0 +1,30 @@
+ros-humble-nodl-generator-cpp (2.0.1-1jammy) jammy; urgency=high
+
+
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Thu, 03 Sep 2026 07:00:00 -0000
+
+ros-humble-nodl-generator-cpp (2.0.0-1jammy) jammy; urgency=high
+
+  * update documentation (#141 <https://github.com/ros-tooling/nodl/issues/141>)
+  * CMake integration for nodl_generate_cpp (#139 <https://github.com/ros-tooling/nodl/issues/139>)
+  * Add --cmake-deps CLI mode for configure-time dependency extraction (#138 <https://github.com/ros-tooling/nodl/issues/138>)
+  * add path to IncludedDocument in DocumentTree for provenance (#120 <https://github.com/ros-tooling/nodl/issues/120>)
+  * Add nodl_generator_cpp (Generation only - no Cmake) (#104 <https://github.com/ros-tooling/nodl/issues/104>)
+  * Contributors: Alistair English
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Tue, 01 Sep 2026 07:00:00 -0000
+
+ros-humble-nodl-generator-cpp (0.3.1-1jammy) jammy; urgency=high
+
+
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Thu, 19 Nov 2020 08:00:00 -0000
+
+ros-humble-nodl-generator-cpp (0.1.0-1jammy) jammy; urgency=high
+
+
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Mon, 01 Jun 2020 07:00:00 -0000
+
+
