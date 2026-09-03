@@ -1,3 +1,40 @@
+## nodl (humble) - 2.0.1-1
+
+The packages in the `nodl` repository were released into the `humble` distro by running `/usr/bin/bloom-release --rosdistro humble nodl --new-track` on `Thu, 03 Sep 2026 18:03:29 -0000`
+
+These packages were released:
+- `ament_nodl`
+- `nodl`
+- `nodl_common_interfaces`
+- `nodl_conformance`
+- `nodl_docgen`
+- `nodl_generator_cpp`
+- `nodl_observe`
+- `nodl_schema`
+- `ros2nodl`
+
+These packages were explicitly ignored:
+- `test_ament_nodl`
+- `test_nodl_generator_cpp`
+- `nodl_tutorial_basics`
+
+Version of package(s) in repository `nodl`:
+
+- upstream repository: https://github.com/ros-tooling/nodl.git
+- release repository: https://github.com/ros2-gbp/nodl-release.git
+- rosdistro version: `0.3.1-3`
+- old version: `0.3.1-3`
+- new version: `2.0.1-1`
+
+Versions of tools used:
+
+- bloom version: `0.14.3`
+- catkin_pkg version: `1.0.0`
+- rosdep version: `0.25.1`
+- rosdistro version: `1.0.1`
+- vcstools version: `0.1.42`
+
+
 ## nodl (foxy) - 0.3.1-1
 
 The packages in the `nodl` repository were released into the `foxy` distro by running `/usr/bin/bloom-release nodl --rosdistro foxy -e` on `Fri, 20 Nov 2020 21:05:57 -0000`
