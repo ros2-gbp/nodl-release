@@ -1,0 +1,12 @@
+Source: ros-humble-nodl-observe
+Section: misc
+Priority: optional
+Maintainer: "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>
+Build-Depends: debhelper (>= 9.0.0), libcli11-dev, python3-pytest <!nocheck>, ros-humble-ament-cmake, ros-humble-ament-cmake-auto, ros-humble-ament-cmake-gtest <!nocheck>, ros-humble-ament-cmake-pytest <!nocheck>, ros-humble-builtin-interfaces, ros-humble-example-interfaces <!nocheck>, ros-humble-rcl-action, ros-humble-rcl-interfaces, ros-humble-rclcpp, ros-humble-rclpy <!nocheck>, ros-humble-rmw, ros-humble-rmw-cyclonedds-cpp <!nocheck>, ros-humble-rmw-fastrtps-cpp <!nocheck>, ros-humble-rmw-implementation-cmake <!nocheck>, ros-humble-ros-environment, ros-humble-rosgraph-msgs, ros-humble-rosidl-runtime-py <!nocheck>, ros-humble-std-msgs <!nocheck>, ros-humble-ros-workspace
+Homepage: https://index.ros.org/p/nodl_observe/#humble
+Standards-Version: 3.9.2
+
+Package: ros-humble-nodl-observe
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libcli11-dev, ros-humble-builtin-interfaces, ros-humble-rcl-action, ros-humble-rcl-interfaces, ros-humble-rclcpp, ros-humble-rmw, ros-humble-rosgraph-msgs, ros-humble-ros-workspace
+Description: Observe a running ROS node and produce its runtime description as a rosgraph_msgs/Node message.
