@@ -1,0 +1,47 @@
+ros-jazzy-nodl-schema (2.0.2-1noble) noble; urgency=high
+
+
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Fri, 04 Sep 2026 07:00:00 -0000
+
+ros-jazzy-nodl-schema (2.0.1-1noble) noble; urgency=high
+
+  * build: disable pip-based test dependencies by default for buildfarm, enabled in CI (#147 <https://github.com/ros-tooling/nodl/issues/147>)
+  * Contributors: Emerson Knapp
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Thu, 03 Sep 2026 07:00:00 -0000
+
+ros-jazzy-nodl-schema (2.0.0-1noble) noble; urgency=high
+
+  * add path to IncludedDocument in DocumentTree for provenance (#120 <https://github.com/ros-tooling/nodl/issues/120>)
+  * feat: ament_nodl_register rewrite local refs to ament index refs (#111 <https://github.com/ros-tooling/nodl/issues/111>)
+  * feat: remove nodl_schema CLI entrypoint, always use ros2nodl for CLIs (#112 <https://github.com/ros-tooling/nodl/issues/112>)
+  * feat: Add local reference resolver (#105 <https://github.com/ros-tooling/nodl/issues/105>)
+  * feat: Include resolvers always return a Path (#110 <https://github.com/ros-tooling/nodl/issues/110>)
+  * test: add pyright checker for nodl_schema and ros2nodl (#109 <https://github.com/ros-tooling/nodl/issues/109>)
+  * feat: rename ament_nodl_register_node to ament_nodl_register (#106 <https://github.com/ros-tooling/nodl/issues/106>)
+  * Add codgen key to schema (#102 <https://github.com/ros-tooling/nodl/issues/102>)
+  * Expose the include tree from load_nodl (#101 <https://github.com/ros-tooling/nodl/issues/101>)
+  * Include: groundwork with ament_index only (#97 <https://github.com/ros-tooling/nodl/issues/97>)
+  * Add byte-array parameter type to NoDL schema (#95 <https://github.com/ros-tooling/nodl/issues/95>)
+  * Per-package documentation (#87 <https://github.com/ros-tooling/nodl/issues/87>)
+  * Docs styling pass with sphinx-immaterial (#81 <https://github.com/ros-tooling/nodl/issues/81>)
+  * Add ament_nodl with the register_node CMake macro (#75 <https://github.com/ros-tooling/nodl/issues/75>)
+  * create new nodl v2 schema within a new package named nodl (#55 <https://github.com/ros-tooling/nodl/issues/55>)
+  * Contributors: Alistair English, Emerson Knapp, Luke Sy
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Tue, 01 Sep 2026 07:00:00 -0000
+
+ros-jazzy-nodl-schema (0.3.1-1noble) noble; urgency=high
+
+
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Thu, 19 Nov 2020 08:00:00 -0000
+
+ros-jazzy-nodl-schema (0.1.0-1noble) noble; urgency=high
+
+
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Mon, 01 Jun 2020 07:00:00 -0000
+
+
