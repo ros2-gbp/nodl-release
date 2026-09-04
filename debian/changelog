@@ -1,0 +1,33 @@
+ros-rolling-nodl-common-interfaces (2.0.2-1resolute) resolute; urgency=high
+
+
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Fri, 04 Sep 2026 07:00:00 -0000
+
+ros-rolling-nodl-common-interfaces (2.0.1-1resolute) resolute; urgency=high
+
+
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Thu, 03 Sep 2026 07:00:00 -0000
+
+ros-rolling-nodl-common-interfaces (2.0.0-1resolute) resolute; urgency=high
+
+  * update documentation (#141 <https://github.com/ros-tooling/nodl/issues/141>)
+  * CMake integration for nodl_generate_cpp (#139 <https://github.com/ros-tooling/nodl/issues/139>)
+  * Contributors: Alistair English
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Tue, 01 Sep 2026 07:00:00 -0000
+
+ros-rolling-nodl-common-interfaces (0.3.1-1resolute) resolute; urgency=high
+
+
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Thu, 19 Nov 2020 08:00:00 -0000
+
+ros-rolling-nodl-common-interfaces (0.1.0-1resolute) resolute; urgency=high
+
+
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Mon, 01 Jun 2020 07:00:00 -0000
+
+
