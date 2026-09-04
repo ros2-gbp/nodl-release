@@ -1,0 +1,12 @@
+Source: ros-rolling-nodl-schema
+Section: misc
+Priority: optional
+Maintainer: "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>
+Build-Depends: debhelper (>= 9.0.0), python3-pytest <!nocheck>, ros-rolling-ros-workspace, python3-all, python3-setuptools, dh-python
+Homepage: https://index.ros.org/p/nodl_schema/#rolling
+Standards-Version: 3.9.2
+
+Package: ros-rolling-nodl-schema
+Architecture: any
+Depends: ${python3:Depends}, ${misc:Depends}, python3-jsonschema, python3-pydantic, python3-ruamel.yaml, python3-yaml, ros-rolling-ament-index-python, ros-rolling-ros-workspace
+Description: ROS 2 Node Definition Language (NoDL) schema and validation.
