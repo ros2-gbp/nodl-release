@@ -1,0 +1,12 @@
+Source: ros-jazzy-nodl-generator-cpp
+Section: misc
+Priority: optional
+Maintainer: "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>
+Build-Depends: debhelper (>= 9.0.0), python3-pytest <!nocheck>, ros-jazzy-ament-cmake-python, ros-jazzy-nodl-schema <!nocheck>, ros-jazzy-ros-workspace
+Homepage: https://index.ros.org/p/nodl_generator_cpp/#jazzy
+Standards-Version: 3.9.2
+
+Package: ros-jazzy-nodl-generator-cpp
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-jazzy-generate-parameter-library, ros-jazzy-generate-parameter-library-py, ros-jazzy-nodl-schema, ros-jazzy-ros-workspace
+Description: Generate an rclcpp base-node class from a NoDL document.
