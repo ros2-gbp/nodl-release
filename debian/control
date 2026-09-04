@@ -1,0 +1,12 @@
+Source: ros-rolling-nodl
+Section: misc
+Priority: optional
+Maintainer: "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>
+Build-Depends: debhelper (>= 9.0.0), ros-rolling-ament-cmake, ros-rolling-ros-workspace
+Homepage: https://index.ros.org/p/nodl/#rolling
+Standards-Version: 3.9.2
+
+Package: ros-rolling-nodl
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-rolling-ament-nodl, ros-rolling-nodl-common-interfaces, ros-rolling-nodl-generator-cpp, ros-rolling-nodl-schema, ros-rolling-ros2nodl, ros-rolling-ros-workspace
+Description: ROS 2 Node Definition Language (NoDL) metapackage.
