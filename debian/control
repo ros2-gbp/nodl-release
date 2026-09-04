@@ -1,0 +1,12 @@
+Source: ros-kilted-nodl-generator-cpp
+Section: misc
+Priority: optional
+Maintainer: "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>
+Build-Depends: debhelper (>= 9.0.0), python3-pytest <!nocheck>, ros-kilted-ament-cmake-python, ros-kilted-nodl-schema <!nocheck>, ros-kilted-ros-workspace
+Homepage: https://index.ros.org/p/nodl_generator_cpp/#kilted
+Standards-Version: 3.9.2
+
+Package: ros-kilted-nodl-generator-cpp
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-kilted-generate-parameter-library, ros-kilted-generate-parameter-library-py, ros-kilted-nodl-schema, ros-kilted-ros-workspace
+Description: Generate an rclcpp base-node class from a NoDL document.
