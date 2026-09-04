@@ -1,0 +1,12 @@
+Source: ros-jazzy-ros2nodl
+Section: misc
+Priority: optional
+Maintainer: "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>
+Build-Depends: debhelper (>= 9.0.0), python3-pytest <!nocheck>, ros-jazzy-ament-index-python, ros-jazzy-builtin-interfaces <!nocheck>, ros-jazzy-nodl-conformance, ros-jazzy-nodl-observe, ros-jazzy-nodl-schema, ros-jazzy-rcl-interfaces <!nocheck>, ros-jazzy-rclpy, ros-jazzy-ros2cli, ros-jazzy-rosgraph-msgs, ros-jazzy-rosidl-runtime-py, ros-jazzy-std-msgs <!nocheck>, ros-jazzy-ros-workspace, python3-all, python3-setuptools, dh-python
+Homepage: https://index.ros.org/p/ros2nodl/#jazzy
+Standards-Version: 3.9.2
+
+Package: ros-jazzy-ros2nodl
+Architecture: any
+Depends: ${python3:Depends}, ${misc:Depends}, ros-jazzy-ament-index-python, ros-jazzy-nodl-conformance, ros-jazzy-nodl-observe, ros-jazzy-nodl-schema, ros-jazzy-rclpy, ros-jazzy-ros2cli, ros-jazzy-rosgraph-msgs, ros-jazzy-rosidl-runtime-py, ros-jazzy-ros-workspace
+Description: ros2cli command entrypoint for NoDL.
