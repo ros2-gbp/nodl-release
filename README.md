@@ -1,71 +1,43 @@
-# nodl_observe
+# NoDL - Node Definition Language
 
-Observe a **running** node and produce its runtime description as a
-`rosgraph_msgs/Node` message — stage one of the Observe → Describe pipeline:
+<img src="nodl/doc/nodl_logo.png" alt="NoDL logo" width="300">
 
-```
-running node --[ Observe ]--> rosgraph_msgs/Node --[ Describe ]--> NoDL document
-```
+NoDL (Node Definition Language) is a schema and toolkit to describe a ROS 2 node's interface: parameters, topics (publishers and subscriptions), services (clients and servers), and actions (clients and servers).
 
-Observe *records* everything observable — every endpoint (including infrastructure
-like `/rosout`, `/parameter_events`, the parameter services), actual QoS, type
-hashes, and parameters — unfiltered. Deciding what counts as "the node's interface"
-is *interpretation*, and belongs to Describe.
+Find complete documentation at https://nodl.readthedocs.io/en/latest/
 
-This is the **C++ (`ament_cmake`) reimplementation**: a reusable `observe_node(...)`
-library plus a thin `observe` executable.
+## Repository structure
 
-## API
+- [ament_nodl/](./ament_nodl/): CMake macros to register NoDL documents with the ament index
+- [nodl/](./nodl/): Metapackage that pulls in the other packages as dependencies. Acts as an easy default for those who don't want a-la-carte.
+  - [doc/](./nodl/doc/): Documentation source for the ReadTheDocs page
+- [nodl_common_interfaces/](./nodl_common_interfaces/): NoDL descriptions for standard ROS 2 node base classes (`rclcpp::Node`, `rclcpp_lifecycle::LifecycleNode`), registered in the ament index until upstream ships its own.
+- [nodl_docgen/](./nodl_docgen/): Sphinx extension rendering a NoDL document into a documentation page at build time.
+- [nodl_generator_cpp/](./nodl_generator_cpp/): C++ code generator — produces an abstract base class from a NoDL document, with a CMake macro for build integration.
+- [nodl_observe/](./nodl_observe/): C++ (`ament_cmake`) package that observes a running ROS 2 node and produces its runtime interface as a `rosgraph_msgs/Node` message — a reusable `observe_node(...)` library plus an `observe` executable. Stage one of Observe → Describe.
+- [nodl_schema/](./nodl_schema/): Package providing the NoDL schema, plus a Python package with validation tools and typed data model to work with it.
+    [nodl.schema.yaml](./nodl_schema/nodl_schema/schemas/nodl.schema.yaml): The NoDL schema, key to this whole thing!
+- [ros2nodl/](./ros2nodl/): `ros2cli` extension providing `ros2 nodl ...` commands
+- [test_nodl_generator_cpp/](./test_nodl_generator_cpp/): Integration tests for `nodl_generator_cpp` — exercises the CMake macro end-to-end.
+- [tools/](./tools/): Scripts supporting development and build workflows
 
-```cpp
-#include "rclcpp/rclcpp.hpp"
-#include "nodl_observe/observe.hpp"
+## Developing
 
-rclcpp::init(argc, argv);
-auto node = std::make_shared<rclcpp::Node>("observer");
+### Setup
 
-nodl_observe::Options opts;          // timeout{5.0s}, include_parameters{true}
-auto msg = nodl_observe::observe_node(*node, "/my_namespace/my_node", opts);
-```
+1. Clone the repo and install pre-commit hooks:
 
-`observe_node` never creates or spins its own node; it uses the caller's node for
-graph queries and (unless `include_parameters == false`) the target's parameter
-services. `timeout` is a ceiling across discovery, stability polling, and parameter
-round-trips. **The caller must not spin `node` concurrently** — parameter collection
-drives async futures via a short-lived internal executor that owns the node.
-`nodl_observe::latched_qos()` is the latched-publish profile (`reliable +
-transient_local + keep_last(1)`).
-
-## The `observe` executable
-
-```
-observe <node_fqn> [--timeout SECONDS] [--no-parameters] [--spin-seconds N] [--topic TOPIC]
+```bash
+pre-commit install
+pre-commit install --hook-type prepare-commit-msg
 ```
 
-Defaults: `--timeout 5.0`, parameters on, `--spin-seconds 0` (spin until SIGINT),
-`--topic /nodl/observed_node`. It observes the target, **latch-publishes** the
-`rosgraph_msgs/Node` on `--topic`, and stays alive for late subscribers. Exit `1` if
-the node never appears within the timeout. The serialized `Node` is the language
-boundary for the future `ros2 nodl describe` verb (a thin Python wrapper that shells
-out to this binary).
+The `prepare-commit-msg` hook will automatically add the `Signed-off-by` line to your commits. If you prefer to sign off manually, use `git commit -s`.
 
-## Observability limits
+### Pip dependencies for full test suite
 
-Not every `Node.msg` field is observable externally:
+The packages in this repository use a few package only available from `pip` as `test_depend`s.
 
-| Entity | What is filled |
-|---|---|
-| publishers / subscriptions | name, type, QoS, RIHS type hash (`get_{publishers,subscriptions}_info_by_topic`) |
-| service servers / clients | name + types only; **QoS is `*_UNKNOWN`** (no info-by-service API) and the type hash is unset |
-| action servers / clients | the hidden `<action>/_action/*` entities are folded into each `Action` (topics keep real QoS, services UNKNOWN); orphans stay flat |
+For the buildfarm environment, these dependencies and tests are disabled, because a package may not be packaged into a `deb`/`rpm` against dependencies from another package manager (`pip`).
 
-Action graph queries use the `rcl_action` C API (no `rclcpp_action` wrapper). Per-RMW
-gaps are recorded faithfully, never fabricated (e.g. jazzy's `rmw_fastrtps_cpp` drops
-history/depth over discovery; `rmw_cyclonedds_cpp` reports a `KEEP_ALL` depth as 0).
-Infinite/overflowing QoS durations are canonicalised to `{sec = INT32_MAX, nanosec =
-0}` on every distro.
-
-**Humble (pre-Iron) is supported**, message-identical to Iron+: the REP-2011 type
-hash and `BEST_AVAILABLE` QoS enum don't exist there, so on Humble the topic hash is
-left unset and `BEST_AVAILABLE` is compiled out (gated by the `ROS2_${ROS_DISTRO}`
-define). Requires a `rosgraph_msgs` that provides `Node.msg`.
+To install all dependencies and run the full test suite, export environment variable `ENABLE_PIP_TEST_DEPENDS=1` - which the GitHub Action CI for this repo does.
