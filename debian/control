@@ -1,0 +1,12 @@
+Source: ros-kilted-ros2nodl
+Section: misc
+Priority: optional
+Maintainer: "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>
+Build-Depends: debhelper (>= 9.0.0), python3-pytest <!nocheck>, ros-kilted-ament-index-python, ros-kilted-builtin-interfaces <!nocheck>, ros-kilted-nodl-conformance, ros-kilted-nodl-observe, ros-kilted-nodl-schema, ros-kilted-rcl-interfaces <!nocheck>, ros-kilted-rclpy, ros-kilted-ros2cli, ros-kilted-rosgraph-msgs, ros-kilted-rosidl-runtime-py, ros-kilted-std-msgs <!nocheck>, ros-kilted-ros-workspace, python3-all, python3-setuptools, dh-python
+Homepage: https://index.ros.org/p/ros2nodl/#kilted
+Standards-Version: 3.9.2
+
+Package: ros-kilted-ros2nodl
+Architecture: any
+Depends: ${python3:Depends}, ${misc:Depends}, ros-kilted-ament-index-python, ros-kilted-nodl-conformance, ros-kilted-nodl-observe, ros-kilted-nodl-schema, ros-kilted-rclpy, ros-kilted-ros2cli, ros-kilted-rosgraph-msgs, ros-kilted-rosidl-runtime-py, ros-kilted-ros-workspace
+Description: ros2cli command entrypoint for NoDL.
