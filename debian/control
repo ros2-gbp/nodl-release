@@ -1,0 +1,12 @@
+Source: ros-humble-nodl-generator-cpp
+Section: misc
+Priority: optional
+Maintainer: "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>
+Build-Depends: debhelper (>= 9.0.0), python3-pytest <!nocheck>, ros-humble-ament-cmake-python, ros-humble-nodl-schema <!nocheck>, ros-humble-ros-workspace
+Homepage: https://index.ros.org/p/nodl_generator_cpp/#humble
+Standards-Version: 3.9.2
+
+Package: ros-humble-nodl-generator-cpp
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-humble-generate-parameter-library, ros-humble-generate-parameter-library-py, ros-humble-nodl-schema, ros-humble-ros-workspace
+Description: Generate an rclcpp base-node class from a NoDL document.
