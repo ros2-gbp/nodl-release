@@ -1,0 +1,12 @@
+Source: ros-kilted-ament-nodl
+Section: misc
+Priority: optional
+Maintainer: "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>
+Build-Depends: debhelper (>= 9.0.0), ros-kilted-ament-cmake, ros-kilted-ros-workspace
+Homepage: https://index.ros.org/p/ament_nodl/#kilted
+Standards-Version: 3.9.2
+
+Package: ros-kilted-ament-nodl
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-kilted-ros2nodl, ros-kilted-ros-workspace
+Description: CMake macros for registering NoDL documents with the ament index.

@@ -1,0 +1,37 @@
+ros-kilted-ament-nodl (2.0.2-1noble) noble; urgency=high
+
+
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Fri, 04 Sep 2026 07:00:00 -0000
+
+ros-kilted-ament-nodl (2.0.1-1noble) noble; urgency=high
+
+
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Thu, 03 Sep 2026 07:00:00 -0000
+
+ros-kilted-ament-nodl (2.0.0-1noble) noble; urgency=high
+
+  * feat: ament_nodl_register rewrite local refs to ament index refs (#111 <https://github.com/ros-tooling/nodl/issues/111>)
+  * feat: remove nodl_schema CLI entrypoint, always use ros2nodl for CLIs (#112 <https://github.com/ros-tooling/nodl/issues/112>)
+  * feat: rename ament_nodl_register_node to ament_nodl_register (#106 <https://github.com/ros-tooling/nodl/issues/106>)
+  * Include: groundwork with ament_index only (#97 <https://github.com/ros-tooling/nodl/issues/97>)
+  * Per-package documentation (#87 <https://github.com/ros-tooling/nodl/issues/87>)
+  * Add ament_nodl with the register_node CMake macro (#75 <https://github.com/ros-tooling/nodl/issues/75>)
+  * Contributors: Emerson Knapp
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Tue, 01 Sep 2026 07:00:00 -0000
+
+ros-kilted-ament-nodl (0.3.1-1noble) noble; urgency=high
+
+
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Thu, 19 Nov 2020 08:00:00 -0000
+
+ros-kilted-ament-nodl (0.1.0-1noble) noble; urgency=high
+
+
+
+ -- "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>  Mon, 01 Jun 2020 07:00:00 -0000
+
+
