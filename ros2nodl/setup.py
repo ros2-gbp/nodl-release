@@ -1,41 +1,31 @@
+# SPDX-FileCopyrightText: 2026 Open Source Robotics Foundation, Inc.
+# SPDX-License-Identifier: Apache-2.0
 from setuptools import find_packages, setup
 
 package_name = 'ros2nodl'
 
 setup(
     name=package_name,
-    version='0.3.1',
+    version='2.0.2',
     packages=find_packages(exclude=['test']),
     data_files=[
-        ('share/ament_index/resource_index/packages',
-            ['resource/' + package_name]),
+        ('share/ament_index/resource_index/packages', ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
     ],
-    install_requires=['setuptools'],
+    extras_require={'test': ['pytest', 'pyright']},
     zip_safe=True,
-    maintainer='Ubuntu Robotics',
-    maintainer_email='ubuntu-robotics@lists.launchpad.net',
-    url='https://github.com/ubuntu-robotics/nodl',
-    download_url='https://github.com/ubuntu-robotics/nodl/releases',
-    keywords=['ROS'],
-    classifiers=[
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: Apache License 2.0',
-        'Programming Language :: Python',
-        'Topic :: Software Development',
-    ],
-    description='CLI tools for NoDL files.',
-    license='Apache License 2.0',
-    tests_require=['pytest'],
     entry_points={
-        'console_scripts': [
-        ],
         'ros2cli.command': [
-            'nodl = ros2nodl._command._nodl:_NoDLCommand',
+            'nodl = ros2nodl.command.nodl:NodlCommand',
+        ],
+        'ros2cli.extension_point': [
+            'ros2nodl.verb = ros2nodl.verb:VerbExtension',
         ],
         'ros2nodl.verb': [
-            'show = ros2nodl._verb._show:_ShowVerb',
-            'validate = ros2nodl._verb._validate:_ValidateVerb'
-        ]
+            'conform = ros2nodl.verb.conform:ConformVerb',
+            'describe = ros2nodl.verb.describe:DescribeVerb',
+            'rewrite = ros2nodl.verb.rewrite:RewriteVerb',
+            'validate = ros2nodl.verb.validate:ValidateVerb',
+        ],
     },
 )
