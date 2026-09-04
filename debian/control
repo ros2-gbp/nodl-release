@@ -1,0 +1,12 @@
+Source: ros-lyrical-nodl
+Section: misc
+Priority: optional
+Maintainer: "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>
+Build-Depends: debhelper (>= 9.0.0), ros-lyrical-ament-cmake, ros-lyrical-ros-workspace
+Homepage: https://index.ros.org/p/nodl/#lyrical
+Standards-Version: 3.9.2
+
+Package: ros-lyrical-nodl
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-lyrical-ament-nodl, ros-lyrical-nodl-common-interfaces, ros-lyrical-nodl-generator-cpp, ros-lyrical-nodl-schema, ros-lyrical-ros2nodl, ros-lyrical-ros-workspace
+Description: ROS 2 Node Definition Language (NoDL) metapackage.
