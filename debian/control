@@ -1,0 +1,12 @@
+Source: ros-humble-nodl-schema
+Section: misc
+Priority: optional
+Maintainer: "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>
+Build-Depends: debhelper (>= 9.0.0), python3-pytest <!nocheck>, ros-humble-ros-workspace, python3-all, python3-setuptools, dh-python
+Homepage: https://index.ros.org/p/nodl_schema/#humble
+Standards-Version: 3.9.2
+
+Package: ros-humble-nodl-schema
+Architecture: any
+Depends: ${python3:Depends}, ${misc:Depends}, python3-jsonschema, python3-pydantic, python3-ruamel.yaml, python3-yaml, ros-humble-ament-index-python, ros-humble-ros-workspace
+Description: ROS 2 Node Definition Language (NoDL) schema and validation.
