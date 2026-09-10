@@ -1,0 +1,13 @@
+Source: ros-lyrical-nodl-common-interfaces
+Section: misc
+Priority: optional
+Maintainer: "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>
+Build-Depends: debhelper (>= 9.0.0), ros-lyrical-ament-cmake, ros-lyrical-ament-nodl, ros-lyrical-ros-workspace
+Homepage: https://index.ros.org/p/nodl_common_interfaces/#lyrical
+Standards-Version: 3.9.2
+
+Package: ros-lyrical-nodl-common-interfaces
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-lyrical-ros-workspace
+Description: NoDL interface descriptions for standard ROS 2 node base classes (rclcpp::Node, rclcpp_lifecycle::LifecycleNode).
+ These descriptions will eventually ship with the upstream packages themselves. Until then, this package registers them in the ament index so that nodl://rclcpp/node and nodl://rclcpp_lifecycle/lifecycle_node resolve correctly.
