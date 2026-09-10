@@ -1,0 +1,48 @@
+# SPDX-FileCopyrightText: 2026 Open Source Robotics Foundation, Inc.
+# SPDX-License-Identifier: Apache-2.0
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nodl-docs"
+version = "0.0.0"
+description = "Documentation build for the NoDL project."
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+docs = [
+    "sphinx>=7",
+    "myst-parser>=2",
+    "sphinx-tabs>=3.4",
+    # Theme + its built-in JSON Schema domain (json:schema directive/role),
+    # which replaces sphinx-jsonschema and sphinx-rtd-theme.
+    "sphinx-immaterial>=0.12",
+    # Enables json_schema_validate so a malformed schema fails the build.
+    "jsonschema>=4",
+    "poethepoet>=0.27",
+    "nodl-docgen",
+    # Runtime dependencies of nodl_docgen/nodl_schema, which are in package.xml which this can't read.
+    "nodl-schema",
+    "pydantic>=2",
+    "pyyaml>=6",
+    "ruamel.yaml>=0.17",
+    "ament-index-python @ git+https://github.com/ament/ament_index@1.9.0#subdirectory=ament_index_python",
+]
+
+# The two NoDL packages live in this repo, not on an index.
+# Install editable so a doc build renders the working tree.
+# This is a uv-only table, pip reads the plain requirements above.
+[tool.uv.sources]
+nodl-docgen = { path = "../../nodl_docgen", editable = true }
+nodl-schema = { path = "../../nodl_schema", editable = true }
+
+# This project exists only to pull in the docs dependencies, it ships no importable modules.
+# Disable setuptools' flat-layout discovery, which would otherwise fail on finding multiple top-level modules.
+[tool.setuptools]
+py-modules = []
+
+[tool.poe.tasks]
+# Mirror the ReadTheDocs build but treat warnings as errors.
+# So, a broken cross-reference or missing schema field fails the GitHub check.
+build = "sphinx-build -b html -W --keep-going . ./_build"
