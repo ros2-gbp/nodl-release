@@ -1,0 +1,12 @@
+Source: ros-kilted-nodl-conformance
+Section: misc
+Priority: optional
+Maintainer: "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>
+Build-Depends: debhelper (>= 9.0.0), python3-pytest <!nocheck>, ros-kilted-ros-workspace, python3-all, python3-setuptools, dh-python
+Homepage: https://index.ros.org/p/nodl_conformance/#kilted
+Standards-Version: 3.9.2
+
+Package: ros-kilted-nodl-conformance
+Architecture: any
+Depends: ${python3:Depends}, ${misc:Depends}, ros-kilted-nodl-schema, ros-kilted-ros-workspace
+Description: Pure semantic comparison for NoDL node interface documents.
