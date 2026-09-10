@@ -1,0 +1,12 @@
+Source: ros-rolling-ros2nodl
+Section: misc
+Priority: optional
+Maintainer: "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>
+Build-Depends: debhelper (>= 9.0.0), python3-pytest <!nocheck>, ros-rolling-ament-index-python, ros-rolling-builtin-interfaces <!nocheck>, ros-rolling-nodl-conformance, ros-rolling-nodl-observe, ros-rolling-nodl-schema, ros-rolling-rcl-interfaces <!nocheck>, ros-rolling-rclpy, ros-rolling-ros2cli, ros-rolling-rosgraph-msgs, ros-rolling-rosidl-runtime-py, ros-rolling-std-msgs <!nocheck>, ros-rolling-ros-workspace, python3-all, python3-setuptools, dh-python
+Homepage: https://index.ros.org/p/ros2nodl/#rolling
+Standards-Version: 3.9.2
+
+Package: ros-rolling-ros2nodl
+Architecture: any
+Depends: ${python3:Depends}, ${misc:Depends}, ros-rolling-ament-index-python, ros-rolling-nodl-conformance, ros-rolling-nodl-observe, ros-rolling-nodl-schema, ros-rolling-rclpy, ros-rolling-ros2cli, ros-rolling-rosgraph-msgs, ros-rolling-rosidl-runtime-py, ros-rolling-ros-workspace
+Description: ros2cli command entrypoint for NoDL.
