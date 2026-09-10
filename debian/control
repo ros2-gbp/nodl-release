@@ -1,0 +1,12 @@
+Source: ros-rolling-nodl-conformance
+Section: misc
+Priority: optional
+Maintainer: "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>
+Build-Depends: debhelper (>= 9.0.0), python3-pytest <!nocheck>, ros-rolling-ros-workspace, python3-all, python3-setuptools, dh-python
+Homepage: https://index.ros.org/p/nodl_conformance/#rolling
+Standards-Version: 3.9.2
+
+Package: ros-rolling-nodl-conformance
+Architecture: any
+Depends: ${python3:Depends}, ${misc:Depends}, ros-rolling-nodl-schema, ros-rolling-ros-workspace
+Description: Pure semantic comparison for NoDL node interface documents.
