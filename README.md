@@ -1,3 +1,40 @@
+## nodl (kilted) - 2.0.3-1
+
+The packages in the `nodl` repository were released into the `kilted` distro by running `/home/emerson/.local/bin/bloom-release -y --rosdistro humble --rosdistro jazzy --rosdistro kilted nodl` on `Thu, 10 Sep 2026 08:06:47 -0000`
+
+These packages were released:
+- `ament_nodl`
+- `nodl`
+- `nodl_common_interfaces`
+- `nodl_conformance`
+- `nodl_docgen`
+- `nodl_generator_cpp`
+- `nodl_observe`
+- `nodl_schema`
+- `ros2nodl`
+
+These packages were explicitly ignored:
+- `test_ament_nodl`
+- `test_nodl_generator_cpp`
+- `nodl_tutorial_basics`
+
+Version of package(s) in repository `nodl`:
+
+- upstream repository: https://github.com/ros-tooling/nodl.git
+- release repository: https://github.com/ros2-gbp/nodl-release.git
+- rosdistro version: `2.0.2-1`
+- old version: `2.0.2-1`
+- new version: `2.0.3-1`
+
+Versions of tools used:
+
+- bloom version: `0.14.3`
+- catkin_pkg version: `1.1.0`
+- rosdep version: `0.26.0`
+- rosdistro version: `1.1.0`
+- vcstools version: `0.1.42`
+
+
 ## nodl (lyrical) - 2.0.3-1
 
 The packages in the `nodl` repository were released into the `lyrical` distro by running `/home/emerson/.local/bin/bloom-release -y --rosdistro humble --rosdistro jazzy --rosdistro kilted --rosdistro lyrical nodl` on `Thu, 10 Sep 2026 08:04:01 -0000`
