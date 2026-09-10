@@ -1,0 +1,12 @@
+Source: ros-humble-nodl
+Section: misc
+Priority: optional
+Maintainer: "ROSGraph Working Group" <rosgraph-wg@googlegroups.com>
+Build-Depends: debhelper (>= 9.0.0), ros-humble-ament-cmake, ros-humble-ros-workspace
+Homepage: https://index.ros.org/p/nodl/#humble
+Standards-Version: 3.9.2
+
+Package: ros-humble-nodl
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-humble-ament-nodl, ros-humble-nodl-common-interfaces, ros-humble-nodl-generator-cpp, ros-humble-nodl-schema, ros-humble-ros2nodl, ros-humble-ros-workspace
+Description: ROS 2 Node Definition Language (NoDL) metapackage.
